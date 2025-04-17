@@ -1,0 +1,43 @@
+<br>
+<br>
+<h6>
+    <div><oj-bind-text value="[[mensagemInfo1]]"></oj-bind-text></div>
+    <p></p>
+    <p><oj-bind-text value="[[mensagemInfo2]]"></oj-bind-text></p>
+    <p></p>
+    <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+        <oj-buttonset-one
+            chroming="borderless"
+            class="oj-buttonset-width-auto"
+            style="width: -webkit-fill-available; margin-left: 50px;"
+            value="{{selectedValueExisteConexaoWiFi}}"
+            on-value-changed="[[setExisteConexaoWiFi]]"
+            >
+            <oj-bind-for-each data="[[existeConexaoWiFiOptions]]">
+                <template>
+                <oj-option value="[[$current.data.id]]">
+                    <span>
+                    <oj-bind-text value="[[$current.data.id]]"></oj-bind-text>
+                    </span>
+                </oj-option>
+                </template>
+            </oj-bind-for-each>
+        </oj-buttonset-one>
+    </div>
+    <p></p>
+    <p><oj-bind-text value="[[mensagemItem1]]"></oj-bind-text></p>
+    <p><oj-bind-text value="[[mensagemItem2]]"></oj-bind-text></p>
+    <br>
+</h6>
+<br>
+<oj-bind-if test="[[!IP()]]">
+    <oj-button
+        id="obter-ip"
+        style="width: -webkit-fill-available;"
+        class="oj-button-lg"
+        chroming="callToAction"
+        on-oj-action="[[getIPAddressAndSubNetMask]]"
+        >Obter IP e Sub-rede
+    </oj-button>
+</oj-bind-if>
+<br>

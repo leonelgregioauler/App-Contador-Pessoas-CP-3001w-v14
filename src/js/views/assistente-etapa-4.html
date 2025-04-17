@@ -1,0 +1,97 @@
+<style>
+
+    oj-form-layout {
+        max-width: 100% !important;
+        margin-bottom: 25px;
+    }
+
+    .conectar-roteador {
+        border: solid;
+        height: 100%;
+        border-style: solid;
+        border-radius: 10px;
+        border-width: thin;
+        color: gray;
+        padding: 20px;
+        margin-bottom: 150px;
+    }
+</style>
+
+<br>
+<br>
+<h6>
+    <div><oj-bind-text value="[[mensagemInfo1]]"></oj-bind-text></div>
+    <p></p> 
+    <oj-bind-if test="[[isDeviceConnected]]">
+        <p><oj-bind-text value="[[mensagemInfo2]]"></oj-bind-text></p>
+    </oj-bind-if>
+
+    <div class="oj-flex-item oj-sm-padding-2x-horizontal" style="text-align: center; width: 100%">
+        <oj-bind-if test="[[showLoadingIndicator]]">
+            <oj-progress-circle
+                id="progressCircle"
+                style="margin: 25px 0 25px 0;"
+                value="{{indeterminate() === -1 ? -1 : progressValue}}">
+            </oj-progress-circle>
+            <div class="oj-sm-margin-4x-vertical"></div>
+            <oj-button
+                id="obter-configuracoes"
+                style="margin: 0 0 150px 0;"
+                class="oj-button-lg"
+                on-oj-action="[[getConfigurations]]"
+                :style.display="[[buttonDisplay]]"
+                ><div><oj-bind-text value="[[mensagemInfo]]"></oj-bind-text></div>Tentar novamente.
+            </oj-button>
+        </oj-bind-if>
+    
+        <oj-bind-if test="[[isDeviceConnected]]">
+            <div class="conectar-roteador">
+                <oj-form-layout max-columns="1" direction="row">
+                    <oj-select-single
+                        id="selecionar-ssid"
+                        data="[[dataSourceSSIDDP]]"
+                        value="{{controllerRegistration.SSIDRoteador}}"
+                        on-value-changed="[[selectListValueChangedSSID]]"
+                        label-hint="Escolha a rede Wi-Fi."
+                        >
+                    </oj-select-single>
+                    <oj-input-password
+                        id="password"
+                        value="{{controllerRegistration.senhaRoteador}}"
+                        on-value-changed="[[setSenhaRoteador]]"
+                        label-hint="Senha da rede Wi-Fi."
+                        mask-icon="visible"
+                        >
+                    </oj-input-password>
+                    <oj-input-text 
+                        id="email"
+                        value="{{controllerRegistration.eMail}}"
+                        on-value-changed="[[setEmail]]"
+                        label-hint="Seu e-mail."
+                        display-options.validator-hint="display"
+                        >
+                    </oj-input-text>
+                    <oj-input-text 
+                        id="nome-estabelecimento"
+                        value="{{controllerRegistration.nomeEstabelecimento}}"
+                        on-value-changed="[[setNomeEstabelecimento]]"
+                        label-hint="Tipo de estabelecimento."
+                        display-options.validator-hint="display"
+                        >
+                    </oj-input-text>
+                    <oj-input-text 
+                    id="ramo-atividade"
+                    value="{{controllerRegistration.ramoAtividade}}"
+                    on-value-changed="[[setNomeRamoAtividade]]"
+                    label-hint="Ramo de atividade."
+                    display-options.validator-hint="display"
+                    >
+                    </oj-input-text>
+                </oj-form-layout>
+            </div>
+        </oj-bind-if>
+    </div>
+</h6>
+
+
+

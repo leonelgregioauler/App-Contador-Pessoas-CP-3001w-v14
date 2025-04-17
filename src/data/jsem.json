@@ -1,0 +1,870 @@
+{
+    "sistema": [
+        {
+            "dia": "24",
+            "mes": "10",
+            "ano": "2024",
+            "hor": "16",
+            "min": "57",
+            "total": "250",
+            "lot": "25",
+            "div": "1",
+            "ver": "H01.S11",
+            "id": "6745131"
+        }
+    ],
+    "dom": [
+        {
+            "hora": 0,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 1,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 2,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 3,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 4,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 5,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 6,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 7,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 8,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 9,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 10,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 11,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 12,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 13,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 14,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 15,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 16,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 17,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 18,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 19,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 20,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 21,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 22,
+            "valor": 0,
+            "dda": 294
+        },
+        {
+            "hora": 23,
+            "valor": 0,
+            "dda": 294
+        }
+    ],
+    "seg": [
+        {
+            "hora": 0,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 1,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 2,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 3,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 4,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 5,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 6,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 7,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 8,
+            "valor": 20,
+            "dda": 295
+        },
+        {
+            "hora": 9,
+            "valor": 25,
+            "dda": 295
+        },
+        {
+            "hora": 10,
+            "valor": 30,
+            "dda": 295
+        },
+        {
+            "hora": 11,
+            "valor": 22,
+            "dda": 295
+        },
+        {
+            "hora": 12,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 13,
+            "valor": 15,
+            "dda": 295
+        },
+        {
+            "hora": 14,
+            "valor": 60,
+            "dda": 295
+        },
+        {
+            "hora": 15,
+            "valor": 55,
+            "dda": 295
+        },
+        {
+            "hora": 16,
+            "valor": 2,
+            "dda": 295
+        },
+        {
+            "hora": 17,
+            "valor": 6,
+            "dda": 295
+        },
+        {
+            "hora": 18,
+            "valor": 40,
+            "dda": 295
+        },
+        {
+            "hora": 19,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 20,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 21,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 22,
+            "valor": 0,
+            "dda": 295
+        },
+        {
+            "hora": 23,
+            "valor": 0,
+            "dda": 295
+        }
+    ],
+    "ter": [
+        {
+            "hora": 0,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 1,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 2,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 3,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 4,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 5,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 6,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 7,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 8,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 9,
+            "valor": 26,
+            "dda": 296
+        },
+        {
+            "hora": 10,
+            "valor": 85,
+            "dda": 296
+        },
+        {
+            "hora": 11,
+            "valor": 28,
+            "dda": 296
+        },
+        {
+            "hora": 12,
+            "valor": 74,
+            "dda": 296
+        },
+        {
+            "hora": 13,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 14,
+            "valor": 33,
+            "dda": 296
+        },
+        {
+            "hora": 15,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 16,
+            "valor": 80,
+            "dda": 296
+        },
+        {
+            "hora": 17,
+            "valor": 33,
+            "dda": 296
+        },
+        {
+            "hora": 18,
+            "valor": 83,
+            "dda": 296
+        },
+        {
+            "hora": 19,
+            "valor": 7,
+            "dda": 296
+        },
+        {
+            "hora": 20,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 21,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 22,
+            "valor": 0,
+            "dda": 296
+        },
+        {
+            "hora": 23,
+            "valor": 0,
+            "dda": 296
+        }
+    ],
+    "qua": [
+        {
+            "hora": 0,
+            "valor": 10,
+            "dda": 297
+        },
+        {
+            "hora": 1,
+            "valor": 37,
+            "dda": 297
+        },
+        {
+            "hora": 2,
+            "valor": 15,
+            "dda": 297
+        },
+        {
+            "hora": 3,
+            "valor": 24,
+            "dda": 297
+        },
+        {
+            "hora": 4,
+            "valor": 39,
+            "dda": 297
+        },
+        {
+            "hora": 5,
+            "valor": 26,
+            "dda": 297
+        },
+        {
+            "hora": 6,
+            "valor": 97,
+            "dda": 297
+        },
+        {
+            "hora": 7,
+            "valor": 81,
+            "dda": 297
+        },
+        {
+            "hora": 8,
+            "valor": 81,
+            "dda": 297
+        },
+        {
+            "hora": 9,
+            "valor": 50,
+            "dda": 297
+        },
+        {
+            "hora": 10,
+            "valor": 38,
+            "dda": 297
+        },
+        {
+            "hora": 11,
+            "valor": 22,
+            "dda": 297
+        },
+        {
+            "hora": 12,
+            "valor": 29,
+            "dda": 297
+        },
+        {
+            "hora": 13,
+            "valor": 21,
+            "dda": 297
+        },
+        {
+            "hora": 14,
+            "valor": 8,
+            "dda": 297
+        },
+        {
+            "hora": 15,
+            "valor": 35,
+            "dda": 297
+        },
+        {
+            "hora": 16,
+            "valor": 46,
+            "dda": 297
+        },
+        {
+            "hora": 17,
+            "valor": 42,
+            "dda": 297
+        },
+        {
+            "hora": 18,
+            "valor": 39,
+            "dda": 297
+        },
+        {
+            "hora": 19,
+            "valor": 19,
+            "dda": 297
+        },
+        {
+            "hora": 20,
+            "valor": 20,
+            "dda": 297
+        },
+        {
+            "hora": 21,
+            "valor": 57,
+            "dda": 297
+        },
+        {
+            "hora": 22,
+            "valor": 97,
+            "dda": 297
+        },
+        {
+            "hora": 23,
+            "valor": 46,
+            "dda": 297
+        }
+    ],
+    "qui": [
+        {
+            "hora": 0,
+            "valor": 34,
+            "dda": 298
+        },
+        {
+            "hora": 1,
+            "valor": 63,
+            "dda": 298
+        },
+        {
+            "hora": 2,
+            "valor": 14,
+            "dda": 298
+        },
+        {
+            "hora": 3,
+            "valor": 66,
+            "dda": 298
+        },
+        {
+            "hora": 4,
+            "valor": 80,
+            "dda": 298
+        },
+        {
+            "hora": 5,
+            "valor": 49,
+            "dda": 298
+        },
+        {
+            "hora": 6,
+            "valor": 3,
+            "dda": 298
+        },
+        {
+            "hora": 7,
+            "valor": 52,
+            "dda": 298
+        },
+        {
+            "hora": 8,
+            "valor": 89,
+            "dda": 298
+        },
+        {
+            "hora": 9,
+            "valor": 21,
+            "dda": 298
+        },
+        {
+            "hora": 10,
+            "valor": 97,
+            "dda": 298
+        },
+        {
+            "hora": 11,
+            "valor": 13,
+            "dda": 298
+        },
+        {
+            "hora": 12,
+            "valor": 54,
+            "dda": 298
+        },
+        {
+            "hora": 13,
+            "valor": 75,
+            "dda": 298
+        },
+        {
+            "hora": 14,
+            "valor": 32,
+            "dda": 298
+        },
+        {
+            "hora": 15,
+            "valor": 12,
+            "dda": 298
+        },
+        {
+            "hora": 16,
+            "valor": 11,
+            "dda": 298
+        },
+        {
+            "hora": 17,
+            "valor": 0,
+            "dda": 298
+        },
+        {
+            "hora": 18,
+            "valor": 0,
+            "dda": 298
+        },
+        {
+            "hora": 19,
+            "valor": 0,
+            "dda": 298
+        },
+        {
+            "hora": 20,
+            "valor": 0,
+            "dda": 298
+        },
+        {
+            "hora": 21,
+            "valor": 0,
+            "dda": 298
+        },
+        {
+            "hora": 22,
+            "valor": 0,
+            "dda": 298
+        },
+        {
+            "hora": 23,
+            "valor": 0,
+            "dda": 298
+        }
+    ],
+    "sex": [
+        {
+            "hora": 0,
+            "valor": 59,
+            "dda": 292
+        },
+        {
+            "hora": 1,
+            "valor": 3,
+            "dda": 292
+        },
+        {
+            "hora": 2,
+            "valor": 62,
+            "dda": 292
+        },
+        {
+            "hora": 3,
+            "valor": 43,
+            "dda": 292
+        },
+        {
+            "hora": 4,
+            "valor": 79,
+            "dda": 292
+        },
+        {
+            "hora": 5,
+            "valor": 17,
+            "dda": 292
+        },
+        {
+            "hora": 6,
+            "valor": 26,
+            "dda": 292
+        },
+        {
+            "hora": 7,
+            "valor": 79,
+            "dda": 292
+        },
+        {
+            "hora": 8,
+            "valor": 77,
+            "dda": 292
+        },
+        {
+            "hora": 9,
+            "valor": 86,
+            "dda": 292
+        },
+        {
+            "hora": 10,
+            "valor": 57,
+            "dda": 292
+        },
+        {
+            "hora": 11,
+            "valor": 66,
+            "dda": 292
+        },
+        {
+            "hora": 12,
+            "valor": 0,
+            "dda": 292
+        },
+        {
+            "hora": 13,
+            "valor": 32,
+            "dda": 292
+        },
+        {
+            "hora": 14,
+            "valor": 50,
+            "dda": 292
+        },
+        {
+            "hora": 15,
+            "valor": 33,
+            "dda": 292
+        },
+        {
+            "hora": 16,
+            "valor": 54,
+            "dda": 292
+        },
+        {
+            "hora": 17,
+            "valor": 54,
+            "dda": 292
+        },
+        {
+            "hora": 18,
+            "valor": 29,
+            "dda": 292
+        },
+        {
+            "hora": 19,
+            "valor": 25,
+            "dda": 292
+        },
+        {
+            "hora": 20,
+            "valor": 89,
+            "dda": 292
+        },
+        {
+            "hora": 21,
+            "valor": 33,
+            "dda": 292
+        },
+        {
+            "hora": 22,
+            "valor": 74,
+            "dda": 292
+        },
+        {
+            "hora": 23,
+            "valor": 85,
+            "dda": 292
+        }
+    ],
+    "sab": [
+        {
+            "hora": 0,
+            "valor": 43,
+            "dda": 293
+        },
+        {
+            "hora": 1,
+            "valor": 42,
+            "dda": 293
+        },
+        {
+            "hora": 2,
+            "valor": 76,
+            "dda": 293
+        },
+        {
+            "hora": 3,
+            "valor": 96,
+            "dda": 293
+        },
+        {
+            "hora": 4,
+            "valor": 91,
+            "dda": 293
+        },
+        {
+            "hora": 5,
+            "valor": 75,
+            "dda": 293
+        },
+        {
+            "hora": 6,
+            "valor": 90,
+            "dda": 293
+        },
+        {
+            "hora": 7,
+            "valor": 59,
+            "dda": 293
+        },
+        {
+            "hora": 8,
+            "valor": 25,
+            "dda": 293
+        },
+        {
+            "hora": 9,
+            "valor": 94,
+            "dda": 293
+        },
+        {
+            "hora": 10,
+            "valor": 73,
+            "dda": 293
+        },
+        {
+            "hora": 11,
+            "valor": 92,
+            "dda": 293
+        },
+        {
+            "hora": 12,
+            "valor": 50,
+            "dda": 293
+        },
+        {
+            "hora": 13,
+            "valor": 73,
+            "dda": 293
+        },
+        {
+            "hora": 14,
+            "valor": 60,
+            "dda": 293
+        },
+        {
+            "hora": 15,
+            "valor": 10,
+            "dda": 293
+        },
+        {
+            "hora": 16,
+            "valor": 20,
+            "dda": 293
+        },
+        {
+            "hora": 17,
+            "valor": 93,
+            "dda": 293
+        },
+        {
+            "hora": 18,
+            "valor": 33,
+            "dda": 293
+        },
+        {
+            "hora": 19,
+            "valor": 0,
+            "dda": 293
+        },
+        {
+            "hora": 20,
+            "valor": 0,
+            "dda": 293
+        },
+        {
+            "hora": 21,
+            "valor": 0,
+            "dda": 293
+        },
+        {
+            "hora": 22,
+            "valor": 0,
+            "dda": 293
+        },
+        {
+            "hora": 23,
+            "valor": 0,
+            "dda": 293
+        }
+    ]
+}

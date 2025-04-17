@@ -1,0 +1,48 @@
+{
+  "name": "com.leonelgregioauler.contadorpessoaswifi",
+  "displayName": "Contador de Pessoas",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cordova-android": "13.0.0",
+    "cordova-browser": "7.0.0",
+    "cordova-ios": "7.1.1"
+  },
+  "cordova": {
+    "platforms": [
+      "browser",
+      "android",
+      "ios"
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-networkinterface": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-saf-mediastore": {},
+      "cordova-sqlite-storage": {}
+    }
+  },
+  "devDependencies": {
+    "cordova-plugin-device": "*",
+    "cordova-plugin-dialogs": "*",
+    "cordova-plugin-file": "*",
+    "cordova-plugin-inappbrowser": "*",
+    "cordova-plugin-network-information": "*",
+    "cordova-plugin-saf-mediastore": "*",
+    "cordova-plugin-splashscreen": "*",
+    "cordova-sqlite-storage": "*"
+  }
+}

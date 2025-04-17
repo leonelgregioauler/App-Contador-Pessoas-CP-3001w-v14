@@ -1,0 +1,83 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<style>
+
+  oj-module {
+    display: inline;
+  }
+  
+  .barra-navegacao-modulos {
+    position: fixed;
+    bottom: 80px;
+    padding-right: 2rem !important;
+  }
+
+  /* .barra-navegacao-modulos oj-button {
+    width: 60px;
+  } */
+
+  h6 {
+      margin-top: 0px !important;
+      font-size: large;
+  }
+
+  p {
+      margin-left: 50px;
+      margin-bottom: 50px;
+  }
+
+</style>
+
+</style>
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <br>
+        <br>
+        <oj-progress-bar
+          id="progress-bar"
+          value="[[progressBarValue]]"
+          >
+        </oj-progress-bar>
+
+        <oj-module
+            config="[[ModuleElementUtils.createConfig({ params: sessionState, name: currentModule(), viewModelPath: viewModelPath() + currentModule() + '.js', viewPath: viewPath() + currentModule() + '.html' })]]"
+            animation='[[moduleAnimation]]'
+            >
+        </oj-module>
+
+        <div class="barra-navegacao-modulos oj-flex oj-sm-12 oj-md-12 oj-lg-12 oj-sm-justify-content-space-between oj-md-justify-content-space-between oj-lg-justify-content-space-between">
+          <div class="oj-sm-flex-items-initial oj-md-flex-items-initial oj-lg-flex-items-initial">
+            <oj-button
+              id="voltar-modulo"
+              class="oj-button-lg"
+              display="icons"
+              chroming="callToAction"
+              on-oj-action="[[voltarModulo]]"
+              disabled="[[disabledButtonVoltar]]"
+              >
+              <span slot="startIcon" class="icon-arrow-left2"></span>
+            </oj-button>
+          </div>
+          <div class="oj-sm-justify-content-flex-end oj-md-justify-content-flex-end oj-lg-justify-content-flex-end">
+            <oj-button
+              id="avancar-modulo"
+              class="oj-button-lg"
+              display="icons"
+              chroming="callToAction"
+              on-oj-action="[[avancarModulo]]"
+              disabled="[[disabledButtonAvancar]]"
+              >
+              <span slot="startIcon" class="icon-arrow-right2"></span>
+            </oj-button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

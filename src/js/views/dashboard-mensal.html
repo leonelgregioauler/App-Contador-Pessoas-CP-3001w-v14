@@ -1,0 +1,324 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <style>
+
+  #modalDialogArquivoGerado #okButton .oj-button-label {
+    background-color: rgb(58, 54, 50);
+    color: #ffffff;
+  }
+
+  #modalDialogArquivoGerado #cancelButton .oj-button-label {
+    background-color: #979899;
+  }
+  
+  #modalDialogGerarExcelLista {
+    background-color: #ffffff;
+  }
+
+  #excel:first-child button {
+    border-color: green;
+  }
+
+  .oj-buttonset-multi {
+    display: block !important;
+    white-space: normal !important;
+  }
+
+  .oj-buttonset-multi.oj-button-half-chrome .oj-button {
+    padding: 0;
+    margin: 5px;
+  }
+
+  /* #borderlessSetManyText .oj-button-toggle.oj-selected.oj-button-half-chrome {
+    background-color: black;
+    height: 4rem;
+  }
+
+  #borderlessSetManyText .oj-button-toggle.oj-default.oj-button-half-chrome {
+    background-color: rgb(13, 13, 249);
+    height: 4rem;
+  }
+
+  #borderlessSetManyText .oj-button-text {
+    color: #FFFFFF;
+  }
+
+  .oj-button-button, .oj-button-toggle {
+    border: none;
+  } */
+  
+  @media (orientation: landscape) {
+    
+    .chart {
+      width: 100%;
+      height: 50vh;
+    }
+
+    .lotacao {
+      font-size: 25px;
+      font-weight: bold;
+      color: rgb(65 65 235);
+    }
+
+    .total-hoje {
+      font-size: 25px;
+      font-weight: bold; 
+      color: #373e44;
+    }
+
+    .average {
+      font-size: 25px;
+      font-weight: bold; 
+      color: rgb(65 65 235);
+    }
+
+  }
+
+  @media (orientation: portrait) {
+    
+    .chart {
+      width: 100%;
+      height: 350px;
+    }
+
+    .lotacao {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: rgb(13, 13, 249)
+    }
+
+    .total-hoje {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: #373e44;
+    }
+
+    .average {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: rgb(13, 13, 249);
+    }
+  }
+
+</style>
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V14.1.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <header role="banner" class="oj-hybrid-applayout-header" style="visibility: hidden">
+      <oj-module config="[[headerConfig]]"></oj-module>
+    </header>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content" style="padding-top: 2px; padding-bottom: 45px;">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding" style="padding: 5px;">
+        <div class="oj-flex" style="width: 100%; padding-bottom: 57px;">
+          <div class="oj-flex-item oj-sm-padding-2x-horizontal" style="text-align: center; width: 100%">
+            
+            <oj-bind-if test="[[showGraphicMonth]]">
+              <p style="margin: 0 0 0 0;">  
+                <span class="total-hoje">
+                  Total Hoje : <oj-bind-text value="[[total.totalDay()]]"></oj-bind-text>
+                </span>
+              </p>
+              <p class="lotacao" style="margin: 0 0 0 0;">
+                <span>
+                  Lotação Agora : <oj-bind-text value="[[total.totalLotacao()]]"></oj-bind-text>
+                </span>
+              </p>
+            </oj-bind-if>
+          </div>
+        </div>
+        
+        <div class="oj-flex-item oj-sm-padding-2x-horizontal" style="text-align: center; width: 100%">
+          <oj-bind-if test="[[showLoadingIndicator]]">
+            <oj-progress-circle
+              id="progressCircle"
+              style="margin: 25px 0 25px 0;"
+              value="{{indeterminate() === -1 ? -1 : progressValue}}">
+            </oj-progress-circle>
+            <div class="oj-sm-margin-4x-vertical"></div>
+            <oj-button 
+              id="buttonTryAgain"
+              style="margin: 0 0 150px 0;"
+              class="oj-button-lg"
+              on-oj-action="[[restartButton]]" 
+              :style.display="[[buttonDisplay]]"
+              >
+              Falha de comunicação. Tentar novamente.
+            </oj-button>
+          </oj-bind-if>
+          <oj-bind-if test="[[showRequestRegister]]">
+            <span>Cadastro da controladora não realizado. Acessar "Ajustes"</span>
+          </oj-bind-if>
+          
+          <oj-bind-if test="[[showGraphicMonth]]">
+            <div>
+              <oj-button
+                id="excel"
+                style="margin-bottom: 30px;"
+                class="oj-button-lg"
+                on-oj-action="[[openGerarExcelLista]]"
+              >
+              <span slot='startIcon' style="color: green;" class="icon-file-excel"></span>
+              </oj-button>
+            </div>
+
+            <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+              <oj-buttonset-many
+                chroming="borderless"
+                class="oj-button-lg"
+                id="borderlessSetManyText"
+                value="{{buttonSelectedValues}}"
+                disabled="[[disableControls]]"
+                on-value-changed="[[selectMonthsYear]]"
+                >
+                <oj-bind-for-each data="[[months]]">
+                  <template>
+                    <oj-option value="[[$current.data.mes]]">
+                      <span>
+                        <oj-bind-text value="[[$current.data.mesDescricaoCompleta]]"></oj-bind-text>
+                      </span>
+                    </oj-option>
+                  </template>
+                </oj-bind-for-each>
+              </oj-buttonset-many>
+            </div>
+            
+            <br>
+            <oj-bind-for-each data="[[dataSourceDataMonth]]">
+              <template data-oj-as="controladora">
+                <oj-chart 
+                  :id="[[$current.index + '_month']]"
+                  class="chart"
+                  type="line"
+                  zoom-and-scroll="delayed" 
+                  zoom-direction="x"
+                  orientation="[[orientationValue]]"
+                  data="[[controladora.data.histMonth]]"
+                  stack="[[stackValue]]"
+                  stack-label="[[stackValue]]"
+                  selection-mode="single"
+                  animation-on-display="auto"
+                  animation-on-data-change="auto"
+                  hover-behavior="dim"
+                  legend.position="bottom"
+                  y-axis.tick-label.rendered="on"
+                  y-axis.major-tick.rendered="on"
+                  y-axis.title="Qtd. Pessoas"
+                  x-axis.title="Dias"
+                  x-axis.rendered="on"
+                  x-axis.size="70px"
+                  style-defaults.data-label-position="[[labelPosition]]"
+                  style-defaults.line-type="[[lineTypeValue]]">
+                  <template slot='itemTemplate' data-oj-as='item'>
+                    <oj-chart-item 
+                      value='[[item.data.value]]'
+                      group-id='[[ [item.data.quarter] ]]' 
+                      series-id='[[item.data.series]]'
+                      label="[[item.data.value.toString()]]"> 
+                    </oj-chart-item>
+                  </template>
+                  <template slot="seriesTemplate" data-oj-as="series">
+                    <oj-chart-series
+                      color="[[returnColorMonthYear(series)]]">
+                    </oj-chart-series>
+                  </template>
+                  <template slot="tooltipTemplate">
+                    <table class="oj-dvt-datatip-table">
+                      <tr>
+                        <td class="oj-dvt-datatip-value">
+                          Data :
+                          <oj-bind-text value="[[$current.itemData.series]]"></oj-bind-text>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="oj-dvt-datatip-value">
+                          Dia :
+                          <oj-bind-text value="[[$current.itemData.quarter]]"></oj-bind-text>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="oj-dvt-datatip-value">
+                          Quantidade de Pessoas :
+                          <oj-bind-text value="[[$current.itemData.value]]"></oj-bind-text>
+                        </td>
+                      </tr>
+                    </table>
+                  </template>
+                </oj-chart>
+              </template>
+            </oj-bind-for-each>
+            <oj-dialog 
+              id="modalDialogArquivoGerado" 
+              dialog-title="Arquivo Salvo com Sucesso."
+              position.at.vertical="center"
+              position.my.vertical="center"
+              >
+              <div slot="body">
+                <oj-label>Salvamos seu relatório na pasta "CP 3001" em "Downloads" e nas pastas "Relatório Mensal" e "Relatório Mensal Detalhes" em "Documentos" do seu dispositivo.</oj-label>
+              </div>
+              <div slot="footer">
+                <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[close]]">Fechar
+                </oj-button>
+              </div>
+            </oj-dialog>
+
+            <oj-dialog 
+              id="modalDialogGerarExcelLista" 
+              dialog-title="Opções de Relatório"
+              position.at.vertical="center"
+              position.my.vertical="center"
+              >
+              <div slot="body">
+                <oj-button 
+                  id="relatorio-mensal"
+                  style="width: 100%; margin: 5px;"
+                  class="oj-button-lg"
+                  on-oj-action="[[gerarExcel]]"
+                  >Gerar Excel
+                </oj-button>
+                <oj-button 
+                  id="relatorio-mensal-detalhes" 
+                  style="width: 100%; margin: 5px;"
+                  class="oj-button-lg"
+                  disabled="[[isMonthSelected]]"
+                  on-oj-action="[[gerarExcelDetalhes]]"
+                  >Gerar Excel Detalhado
+                </oj-button>
+                <oj-button 
+                  id="cancelar-relatorio" 
+                  style="width: 100%; margin: 5px;"
+                  class="oj-button-lg"
+                  on-oj-action="[[closeGerarExcelLista]]"
+                  >Cancelar
+                </oj-button>
+              </div>
+            </oj-dialog>
+            <oj-dialog 
+              id="modalDialogSemDadosHistorico" 
+              dialog-title="Dados não encontrados."
+              position.at.vertical="center"
+              position.my.vertical="center"
+              >
+              <div slot="body">
+                <oj-label>Verifique se o cadastro da controladora foi realizado e se o gráfico está gerando dados.</oj-label>
+              </div>
+              <div slot="footer">
+                <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[closeAviso]]">Fechar
+                </oj-button>
+              </div>
+            </oj-dialog>
+          </oj-bind-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

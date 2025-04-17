@@ -1,0 +1,239 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <style>
+
+  .oj-buttonset-multi {
+    display: block !important;
+    white-space: normal !important;
+  }
+
+  .oj-buttonset-multi.oj-button-half-chrome .oj-button {
+    padding: 0;
+    margin: 5px;
+  }
+
+  /* #borderlessSetManyText .oj-button-toggle.oj-selected.oj-button-half-chrome {
+    background-color: black;
+    height: 4rem;
+  }
+
+  #borderlessSetManyText .oj-button-toggle.oj-default.oj-button-half-chrome {
+    background-color: rgb(13, 13, 249);
+    height: 4rem;
+  }
+
+  #borderlessSetManyText .oj-button-text {
+    color: #FFFFFF;
+  }
+
+  .oj-button-button, .oj-button-toggle {
+    border: none;
+  } */
+
+  @media (orientation: landscape) {
+    
+    .chart {
+      width: 100%;
+      height: 50vh;
+    }
+  
+    .lotacao {
+      font-size: 25px;
+      font-weight: bold; 
+      color: rgb(13, 13, 249);
+    }
+  
+    .total-hoje {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: #373e44;
+    }
+
+    .average {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: rgb(13, 13, 249);
+    }
+  }
+  
+  @media (orientation: portrait) {
+    
+    .chart {
+      width: 100%;
+      height: 350px;
+    }
+  
+    .lotacao {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: rgb(65 65 235)
+    }
+  
+    .total-hoje {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: #373e44;
+    }
+
+    .average {
+      font-size: 25px; 
+      font-weight: bold; 
+      color: rgb(65 65 235);
+    }
+  }
+</style>
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V14.1.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <header role="banner" class="oj-hybrid-applayout-header" style="visibility: hidden">
+      <oj-module config="[[headerConfig]]"></oj-module>
+    </header>
+  </div>
+
+  <!-- <cp-3001></cp-3001> -->
+  
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content" style="padding-top: 2px; padding-bottom: 45px;">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding" style="padding: 5px;">
+        <div class="oj-flex" style="width: 100%; padding-bottom: 57px;">
+          <div class="oj-flex-item oj-sm-padding-2x-horizontal" style="text-align: center; width: 100%">
+            
+            <oj-bind-if test="[[showGraphicHour]]">
+              <p style="margin: 0 0 0 0;">  
+                <span class="total-hoje">
+                  Total Hoje : <oj-bind-text value="[[total.totalDay()]]"></oj-bind-text>
+                </span>
+              </p>
+              <p class="lotacao" style="margin: 0 0 0 0;">
+                <span>
+                  Lotação Agora : <oj-bind-text value="[[total.totalLotacao()]]"></oj-bind-text>
+                </span>
+              </p>
+            </oj-bind-if>
+          </div>
+        </div>
+        
+        <div class="oj-flex-item oj-sm-padding-2x-horizontal" style="text-align: center; width: 100%">
+          <oj-bind-if test="[[showLoadingIndicator]]">
+            <oj-progress-circle
+              id="progressCircle"
+              style="margin: 25px 0 25px 0;"
+              value="{{indeterminate() === -1 ? -1 : progressValue}}">
+            </oj-progress-circle>
+            <div class="oj-sm-margin-4x-vertical"></div>
+            <oj-button 
+              id="buttonTryAgain"
+              style="margin: 0 0 150px 0;"
+              class="oj-button-lg"
+              on-oj-action="[[restartButton]]" 
+              :style.display="[[buttonDisplay]]"
+              >
+              Falha de comunicação. Tentar novamente.
+            </oj-button>
+          </oj-bind-if>
+          <oj-bind-if test="[[showRequestRegister]]">
+            <span>Cadastro da controladora não realizado. Acessar "Ajustes"</span>
+          </oj-bind-if>
+
+          <oj-bind-if test="[[showGraphicHour]]">
+            <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+              <oj-buttonset-many
+                chroming="borderless"
+                class="oj-button-lg"
+                id="borderlessSetManyText"
+                value="{{buttonSelectedValues}}"
+                disabled="[[disableControls]]"
+                on-value-changed="[[selectDaysWeek]]"
+                >
+                <oj-bind-for-each data="[[days]]">
+                  <template>
+                    <oj-option value="[[$current.data.dia]]">
+                      <span>
+                        <oj-bind-text value="[[$current.data.diaDescricaoCompleta]]"></oj-bind-text>
+                      </span>
+                    </oj-option>
+                  </template>
+                </oj-bind-for-each>
+              </oj-buttonset-many>
+            </div>
+
+            <br>
+          
+            <oj-bind-for-each data="[[dataSourceDataHour]]"> 
+              <template data-oj-as="controladora">
+                <oj-chart 
+                  :id="[[$current.index + '_hour']]"
+                  class="chart"
+                  type="line" 
+                  zoom-and-scroll="delayed" 
+                  zoom-direction="x"
+                  orientation="[[orientationValue]]"
+                  data="[[controladora.data.histHour]]"
+                  stack="[[stackValue]]"
+                  stack-label="[[stackValue]]"
+                  selection-mode="single"
+                  animation-on-display="auto"
+                  animation-on-data-change="auto"
+                  hover-behavior="dim"
+                  legend.position="bottom"
+                  y-axis.tick-label.rendered="on"
+                  y-axis.major-tick.rendered="on"
+                  y-axis.title="Qtd. Pessoas"
+                  x-axis.title="Horas"
+                  x-axis.rendered="on"
+                  x-axis.size="70px"
+                  style-defaults.data-label-position="[[labelPosition]]"
+                  style-defaults.line-type="[[lineTypeValue]]">
+                  <template slot='itemTemplate' data-oj-as='item'>
+                    <oj-chart-item 
+                      value='[[item.data.value]]'
+                      group-id='[[ [item.data.quarter] ]]' 
+                      series-id='[[item.data.series]]'
+                      label="[[item.data.value.toString()]]"
+                      >
+                    </oj-chart-item>
+                  </template>
+                  <template slot="seriesTemplate" data-oj-as="series">
+                    <oj-chart-series
+                      color="[[returnColorDaysWeek(series)]]">
+                    </oj-chart-series>
+                  </template>
+                  <template slot="tooltipTemplate">
+                    <table class="oj-dvt-datatip-table">
+                      <tr>
+                        <td class="oj-dvt-datatip-value">
+                          Turno :
+                          <oj-bind-text value="[[$current.itemData.series]]"></oj-bind-text>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="oj-dvt-datatip-value">
+                          Hora :
+                          <oj-bind-text value="[[$current.itemData.quarter]]"></oj-bind-text>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="oj-dvt-datatip-value">
+                          Quantidade de Pessoas :
+                          <oj-bind-text value="[[$current.itemData.value]]"></oj-bind-text>
+                        </td>
+                      </tr>
+                    </table>
+                  </template>
+                </oj-chart>
+              </template>
+            </oj-bind-for-each>
+          </oj-bind-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

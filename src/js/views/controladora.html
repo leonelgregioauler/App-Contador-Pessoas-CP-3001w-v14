@@ -1,0 +1,414 @@
+<!--
+ Copyright (c) 2014, 2023, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <style>
+
+  .oj-button-label {
+    color: #ffffff;
+  }
+
+  .oj-button {
+    padding: 10px 0 10px 0;
+  }
+
+  #modalDialogExcluirCadastro #okButton .oj-button-label,
+  #modalDialogConectarRoteador #conectarButton .oj-button-label,
+  #modalDialogAtualizarDataHora #atualizarDataHoraButton .oj-button-label,
+  #modalDialogAjustarDirecaoSensor #ajustarDirecaoSensorButton .oj-button-label
+   {
+    background-color: rgb(58, 54, 50);
+  }
+
+  #modalDialogExcluirCadastro #cancelButton .oj-button-label,
+  #modalDialogConectarRoteador #cancelConectarButton .oj-button-label,
+  #modalDialogAtualizarDataHora #cancelAtualizarDataHoraButton .oj-button-label,
+  #modalDialogAjustarDirecaoSensor #cancelAjustarDirecaoSensorButton .oj-button-label
+   {
+    background-color: #979899;
+  }
+
+  .ip {
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  oj-form-layout {
+    max-width: 100% !important;
+  }
+
+  oj-list-view { 
+    margin-bottom: 150px;
+  }
+
+  .conectar-roteador {
+    border: solid;
+    height: 100%;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: thin;
+    color: gray;
+    padding: 20px;
+  }
+
+  #update-button .oj-button-button,
+  #adicionar-button .oj-button-button {
+    background-color: #048304;
+  }
+  
+  #update-button .oj-button-button:disabled {
+    background-color: var(--oj-button-solid-chrome-bg-color-disabled) !important;
+    border-color: var(--oj-button-solid-chrome-border-color-disabled) !important;
+    color: var(--oj-button-solid-chrome-text-color-disabled) !important;
+    background-image: none !important;
+  }
+
+  .oj-switch:not(.oj-read-only) .oj-switch-container {
+    width: 4rem;
+  }
+
+  .oj-switch .oj-switch-track {
+    width: 3.5rem;
+    height: 2rem;
+  }
+
+  .oj-switch .oj-switch-thumb, .oj-switch.oj-default .oj-switch-thumb {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* .oj-text-field-container {
+    height: 62px !important;
+  }
+
+  .oj-buttonset-multi.oj-button-half-chrome .oj-button {
+    width: 62px !important;
+    height: 62px !important;
+  } */
+
+</style>
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V14.1.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <header role="banner" class="oj-hybrid-applayout-header" style="visibility: hidden">
+      <oj-module config="[[headerConfig]]"></oj-module>
+    </header>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <h1></h1>
+        <div>
+          <oj-form-layout max-columns="1" direction="row">
+            <oj-input-text 
+              id="descricao-controladora"
+              value="{{controllerRegistration.descricaoControladora}}"
+              label-hint="Local da instalação (Ex.: Recepção, Loja, Salão)"
+              on-raw-value-changed="[[handleRawValueChanged]]"
+              >
+            </oj-input-text>
+            <oj-input-text 
+              id="ip"
+              value="{{controllerRegistration.IP}}" 
+              label-hint="Informe o IP do contador"
+              validators="[[validators]]"
+              display-options.validator-hint="display">
+            </oj-input-text>
+            <!-- <oj-button
+              id="consultar-ip-rede"
+              style="width: 100%; margin-bottom: 12px;"
+              chroming="outlined"
+              class="oj-button-lg"
+              on-oj-action="[[consultarIPRede]]"
+              >
+              <div style="color : black">Detectar IP</div>
+              <span slot='startIcon' class="icon-spinner9"></span>
+            </oj-button> -->
+            <oj-input-text 
+              id="url"
+              value="{{controllerRegistration.URL}}" 
+              label-hint="Informe o ID da sua controladora."
+              >
+            </oj-input-text>
+            <div style="text-align: center;">         
+              <oj-select-single
+                  id="selecionar-fonte-dados"
+                  class="oj-choice-direction-row"
+                  data="[[dataSourceOptionsDP]]"
+                  value="{{controllerRegistration.fonteDados}}"
+                  on-value-changed="[[selectListValueChanged]]"
+                  label-hint="Tipo de acesso (LOCAL ou INTERNET)"
+                  >
+              </oj-select-single>
+            </div>
+            <oj-input-number 
+              id="hora-inicio-turno-1" 
+              value="{{controllerRegistration.horaInicioTurno1}}" 
+              label-hint="Informe a hora de início do 1º Turno"
+              on-raw-value-changed="[[handleRawValueChanged]]" 
+              min="0" 
+              max="23"
+              step="1">
+            </oj-input-number>
+            <oj-input-number 
+              id="hora-fim-turno-1" 
+              value="{{controllerRegistration.horaFimTurno1}}" 
+              label-hint="Informe a hora de fim do 1º Turno"
+              on-raw-value-changed="[[handleRawValueChanged]]" 
+              min="0" 
+              max="23"
+              step="1">
+            </oj-input-number>
+            <oj-input-number 
+              id="hora-inicio-turno-2" 
+              value="{{controllerRegistration.horaInicioTurno2}}" 
+              label-hint="Informe a hora de início do 2º Turno"
+              on-raw-value-changed="[[handleRawValueChanged]]" 
+              min="0" 
+              max="23"
+              step="1">
+            </oj-input-number>
+            <oj-input-number 
+              id="hora-fim-turno-2" 
+              value="{{controllerRegistration.horaFimTurno2}}" 
+              label-hint="Informe a hora de fim do 2º Turno"
+              on-raw-value-changed="[[handleRawValueChanged]]" 
+              min="0" 
+              max="23"
+              step="1">
+            </oj-input-number>
+            <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-start">
+              <oj-switch id="show-controller"
+                         value="{{controllerRegistration.exibeDashBoard}}"
+                         label-hint="Exibir esse dispositivo">
+              </oj-switch>
+            </div>
+            <oj-button 
+              id="adicionar-button" 
+              style="width: 50%; float: right; border-radius: 5px;"
+              class="oj-button-lg" 
+              on-oj-action="[[addItem]]"
+              chroming="callToAction"
+              >
+              <span slot='startIcon' class="icon-plus"></span>
+              Adicionar
+            </oj-button>
+          </oj-form-layout>
+        </div>
+        <oj-bind-if test="[[showListView]]"> 
+          <oj-list-view 
+            id="listview"
+            style="margin: auto; margin-top: 30px; margin-bottom: 30px;"
+            selection-mode="single" 
+            data="[[dataProviderController]]"
+            selected="{{selectedItems}}"
+            on-selected-changed="[[handleSelectedChanged]]"
+            >
+            <template slot="itemTemplate" data-oj-as="item">
+              <li>
+                <oj-list-item-layout>
+                  <span class="oj-typography-body-md oj-text-color-primary">
+                    <div class="descricao-controladora">
+                      <oj-bind-text value="[[item.data.descricaoControladora]]"></oj-bind-text>
+                    </div>
+                    <div class="ip">
+                      <oj-bind-text value="[[item.data.IP]]"></oj-bind-text>
+                    </div>
+                  </span>
+                </oj-list-item-layout>
+              </li>
+            </template>
+          </oj-list-view>
+        </oj-bind-if>
+        <!-- <div class="conectar-roteador">
+          <oj-form-layout max-columns="1" direction="row">
+            <oj-input-text 
+              id="email"
+              value="{{controllerRegistration.eMail}}" 
+              label-hint="Informe o email"
+              display-options.validator-hint="display"
+              disabled="[[isControllerCreated]]"
+              >
+            </oj-input-text>
+            <oj-input-text 
+              id="nome-estabelecimento"
+              value="{{controllerRegistration.nomeEstabelecimento}}" 
+              label-hint="Informe o nome do estabelecimento"
+              display-options.validator-hint="display"
+              disabled="[[isControllerCreated]]"
+              >
+            </oj-input-text>
+            <oj-input-text 
+              id="ramo-atividade"
+              value="{{controllerRegistration.ramoAtividade}}" 
+              label-hint="Informe o ramo de atividade"
+              display-options.validator-hint="display"
+              disabled="[[isControllerCreated]]"
+              >
+            </oj-input-text>
+
+
+            <oj-select-single
+                id="selecionar-ssid"
+                data="[[dataSourceSSIDDP]]"
+                value="{{controllerRegistration.SSIDRoteador}}"
+                on-value-changed="[[selectListValueChangedSSID]]"
+                label-hint="Selecionar o SSID que deseja conectar."
+                disabled="[[isDataSourceRemote]]"
+                >
+            </oj-select-single>
+            <oj-input-password
+              id="password"
+              value="{{controllerRegistration.senhaRoteador}}" 
+              label-hint="Informe a senha do SSID que deseja conectar."
+              mask-icon="visible"
+              disabled="[[isDataSourceRemote]]"
+              >
+            </oj-input-password>
+            <div class="oj-flex">
+              <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-flex">
+                <oj-button 
+                  id="conectar-button" 
+                  style="width: 100%; border-radius: 5px;"
+                  class="oj-button-lg" 
+                  on-oj-action="[[openConnectToDevice]]"
+                  chroming="callToAction"
+                  disabled="[[isSSIDPasswordEmpty]]"
+                  >
+                  <span slot='startIcon' class="icon-connection"></span>
+                  Conectar Roteador
+                </oj-button>
+              </div>
+              <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-flex">
+                <oj-button 
+                  id="atualizar-data-hora-button" 
+                  style="width: 100%; border-radius: 5px;"
+                  class="oj-button-lg" 
+                  on-oj-action="[[updateDateHourController]]"
+                  disabled="[[isControllerCreated]]"
+                  chroming="callToAction"
+                  >
+                  <span slot='startIcon' class="icon-hour-glass"></span>
+                  Corrigir Data / Hora do CP3001w
+                </oj-button>
+              </div>
+              <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-flex">
+                <oj-button 
+                  id="ajustar-direcao-sensor-button" 
+                  style="width: 100%; border-radius: 5px;"
+                  class="oj-button-lg" 
+                  on-oj-action="[[openAdjustSensorDirectionController]]"
+                  disabled="[[isControllerCreated]]"
+                  chroming="callToAction"
+                  >
+                  <span slot='startIcon' class="icon-hour-glass"></span>
+                  Ajustar Direção do Sensor
+                </oj-button>
+              </div>
+            </div>
+            <div inert>
+              <oj-dialog 
+                id="modalDialogConectarRoteador" 
+                dialog-title="Deseja conectar neste roteador ?"
+                position.at.vertical="center"
+                position.my.vertical="center"
+                >
+                <div slot="body">
+                  <oj-bind-text value="[[controllerRegistration.SSIDRoteador()]]"></oj-bind-text>
+                </div>
+                <div slot="footer">
+                  <oj-button id="conectarButton" class="oj-button-lg" on-oj-action="[[connectToDevice]]">Sim
+                  </oj-button>
+                  <oj-button id="cancelConectarButton" class="oj-button-lg" on-oj-action="[[closeConnectToDevice]]">Não
+                  </oj-button>
+                </div>
+              </oj-dialog>
+              <oj-dialog 
+                id="modalDialogAjustarDirecaoSensor" 
+                dialog-title="Deseja inverter a entrada / saída ?"
+                position.at.vertical="center"
+                position.my.vertical="center"
+                >
+                <div slot="body">
+                  <oj-bind-text value="[[controllerRegistration.descricaoControladora()]]"></oj-bind-text>
+                </div>
+                <div slot="footer">
+                  <oj-button id="ajustarDirecaoSensorButton" class="oj-button-lg" on-oj-action="[[adjustSensorDirectionController]]">Sim
+                  </oj-button>
+                  <oj-button id="cancelAjustarDirecaoSensorButton" class="oj-button-lg" on-oj-action="[[closeAdjustSensorDirectionController]]">Não
+                  </oj-button>
+                </div>
+              </oj-dialog>
+            </div>
+          </oj-form-layout>
+        </div>
+      </div> -->
+      <footer class="aaa" style="margin-bottom: 20px; margin-top: 20px;">   <!-- oj-hybrid-padding -->
+        <div class="oj-flex">
+          <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-flex">
+            <oj-button 
+              id="update-button" 
+              style="width: 100%; border-radius: 5px;" 
+              class="oj-button-lg" 
+              on-oj-action="[[updateSelected]]" 
+              disabled="[[isControllerCreated]]"
+              chroming="callToAction"
+              >
+              <span slot='startIcon' class="icon-spinner9"></span>
+              Salvar
+            </oj-button>
+          </div>
+          <div class="oj-sm-12 oj-md-12 oj-lg-12 oj-flex">
+            <oj-button 
+              id="update-button" 
+              style="width: 100%;  border-radius: 5px;" 
+              class="oj-button-lg"
+              on-oj-action="[[open]]"
+              disabled="[[isControllerCreated]]"
+              chroming="danger"
+              >
+              <span slot='startIcon' class="icon-bin2"></span>
+              Excluir
+            </oj-button>
+          </div>
+        </div>
+        <oj-label
+          style="text-align: center; font-size: 12px; font-weight: bold;"
+          >
+          <div class="app-version">
+            <oj-bind-text value="[[appVersion]]"></oj-bind-text>
+          </div>
+          <div class="ip-celular">
+            <oj-bind-text value="[[networkInformation.ipInformation]]"></oj-bind-text>
+          </div>
+          <div class="sub-rede-celular">
+            <oj-bind-text value="[[networkInformation.subnetInformation]]"></oj-bind-text>
+          </div>
+        </oj-label>
+        <oj-dialog 
+          id="modalDialogExcluirCadastro" 
+          dialog-title="Excluir controladora ?"
+          position.at.vertical="center"
+          position.my.vertical="center"
+          >
+          <div slot="body">
+            <oj-bind-text value="[[controllerRegistration.descricaoControladora()]]"></oj-bind-text> : 
+            <oj-bind-text value="[[controllerRegistration.IP()]]"></oj-bind-text>
+          </div>
+          <div slot="footer">
+            <oj-button id="okButton" class="oj-button-lg" on-oj-action="[[removeSelected]]">Sim
+            </oj-button>
+            <oj-button id="cancelButton" class="oj-button-lg" on-oj-action="[[close]]">Não
+            </oj-button>
+          </div>
+        </oj-dialog>
+      </footer>
+    </div>
+  </div>
+</div>

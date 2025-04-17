@@ -1,0 +1,33 @@
+/jet_components
+/exchange_components
+/node_modules
+/bower_components
+/dist
+/web
+/staged-themes
+/themes
+/jaftmp@
+
+/hybrid/node_modules
+/hybrid/platforms
+/hybrid/www/*
+
+!hybrid/plugins
+hybrid/plugins/*
+!hybrid/plugins/fetch.json
+
+.DS_Store
+Thumbs.db
+splash-screen/
+imagens-google-play/
+App-Contador-Pessoas (instaladores e manuais)/
+icons/
+util/
+.idea/
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+apk/
